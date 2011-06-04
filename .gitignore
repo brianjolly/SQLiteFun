@@ -1,0 +1,8 @@
+*.swn
+*.swo
+*.swp
+.DS_Store
+SQLiteFunTest/bin
+SQLiteFunTest/gen
+SQLiteFun/bin
+SQLiteFun/gen
