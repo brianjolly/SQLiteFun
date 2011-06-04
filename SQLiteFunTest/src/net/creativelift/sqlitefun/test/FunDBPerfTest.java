@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.test.AndroidTestCase;
 import android.test.PerformanceTestCase;
+import android.util.Log;
 
 public class FunDBPerfTest extends AndroidTestCase implements PerformanceTestCase {
 	
@@ -59,8 +60,9 @@ public class FunDBPerfTest extends AndroidTestCase implements PerformanceTestCas
 		}
 	}
 	
-	public void testSomething () {
+	public void testInsertWithJavaDate() {
 		startTiming(true);
+		long start_time = System.currentTimeMillis();
 		
 		dbAdapter.open();
 		long new_row_id = dbAdapter.createFunRecord("specific record");
@@ -71,8 +73,29 @@ public class FunDBPerfTest extends AndroidTestCase implements PerformanceTestCas
 		
 		dbAdapter.close();
 		
+		long end_time = System.currentTimeMillis();
+		long total_time = end_time-start_time;
+		Log.w("SQLTESTS", "time spent (java date version): "+total_time);
 		finishTiming(true);
 	}
 	
+	public void testInsertWithTriggerDate() {
+		startTiming(true);
+		long start_time = System.currentTimeMillis();
+		
+		dbAdapter.open();
+		long new_row_id = dbAdapter.createFunRecordWitTrigger("record in trigger table");
+		Cursor specific_record = dbAdapter.fetchTrigTableRecord(new_row_id);
+		specific_record.moveToFirst();
+		String result = specific_record.getString(1);
+		assertEquals("record in trigger table", result);
+		
+		dbAdapter.close();
+		
+		long end_time = System.currentTimeMillis();
+		long total_time = end_time-start_time;
+		Log.w("SQLTESTS", "time spent (trigger version): "+total_time);
+		finishTiming(true);
+	}
 	
 }
