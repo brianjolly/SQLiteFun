@@ -1,6 +1,6 @@
 package net.creativelift.sqlitefun.test;
 
-import net.creativelift.FunDBAdapter;
+import net.creativelift.sqlitefun.FunDBAdapter;
 import android.content.Context;
 import android.database.Cursor;
 import android.test.AndroidTestCase;

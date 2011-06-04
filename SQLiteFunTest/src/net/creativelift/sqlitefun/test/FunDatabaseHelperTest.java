@@ -1,6 +1,6 @@
 package net.creativelift.sqlitefun.test;
 
-import net.creativelift.FunOpenHelper;
+import net.creativelift.sqlitefun.FunOpenHelper;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.test.AndroidTestCase;

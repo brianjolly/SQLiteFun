@@ -1,7 +1,6 @@
 package net.creativelift.sqlitefun;
 
 import net.creativelift.R;
-import net.creativelift.R.layout;
 import android.app.Activity;
 import android.os.Bundle;
 
